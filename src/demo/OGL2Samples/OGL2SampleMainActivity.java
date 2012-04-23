@@ -10,6 +10,7 @@ public class OGL2SampleMainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TEManagerFile.setContext(this);
         GLSurfaceView view = new GLSurfaceView(this);
         view.setEGLContextClientVersion(2);
    		view.setRenderer(new TEUtilRenderer());

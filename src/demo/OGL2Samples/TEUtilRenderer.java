@@ -11,6 +11,10 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
     public void onSurfaceCreated(GL10 glUnused, EGLConfig config) {
         GLES20.glEnable(GL10.GL_BLEND);
 		GLES20.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+		String vertexSource = TEManagerFile.readFileContents("texture.vs");
+		String fragmentSource = TEManagerFile.readFileContents("texture.fs");
+		TEShaderProgram program = new TEShaderTexture(vertexSource, fragmentSource);
+		program.create();
     }
 
     public void onSurfaceChanged(GL10 glUnused, int width, int height) {
