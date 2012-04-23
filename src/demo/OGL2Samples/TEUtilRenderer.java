@@ -16,8 +16,8 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
 		String vertexSource = TEManagerFile.readFileContents("texture.vs");
 		String fragmentSource = TEManagerFile.readFileContents("texture.fs");
 		mProgram = new TEShaderTexture(vertexSource, fragmentSource);
-	    //mProgram.addAttribute("aVertices");
-	    //mProgram.addAttribute("aTextureCoords");
+	    mProgram.addAttribute("aVertices");
+	    mProgram.addAttribute("aTextureCoords");
         GLES20.glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 		mProgram.create();
     }

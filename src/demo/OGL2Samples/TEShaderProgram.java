@@ -9,7 +9,7 @@ public abstract class TEShaderProgram {
 	private String mVertexSource;
 	private String mFragmentSource;
 	private int mProgramId;
-	private LinkedList<String> mAttributes;
+	private LinkedList<String> mAttributes = new LinkedList<String>();
 	
 	TEShaderProgram(String vertexSource, String fragmentSource) {
 		setVertexSource(vertexSource);
@@ -66,6 +66,9 @@ public abstract class TEShaderProgram {
     public final void addAttribute(String attribute) {
     	mAttributes.add(attribute);
     }
+    
+    public abstract void run();
+    
     private int loadShader(int shaderType, String source) {
         int shader = GLES20.glCreateShader(shaderType);
         GLES20.glShaderSource(shader, source);
