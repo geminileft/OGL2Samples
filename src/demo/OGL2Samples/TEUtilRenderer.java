@@ -28,6 +28,8 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
 
     public void onDrawFrame(GL10 glUnused) {
         GLES20.glClear( GLES20.GL_COLOR_BUFFER_BIT);
+        mProgram.activate();
+        //mProgram.run();
 /*
     TEShaderData* shaderData;
     TEShaderData shader;

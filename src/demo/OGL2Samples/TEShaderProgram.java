@@ -49,18 +49,21 @@ public abstract class TEShaderProgram {
         String attribute = "";
         if (count > 0) {
         	int i = 0;
-        	while (i < count)
-        	attribute = mAttributes.get(i);
-            int handle = GLES20.glGetAttribLocation(mProgramId, attribute);
-            GLES20.glEnableVertexAttribArray(handle);
-            checkGlError("glEnableVertexAttribArray");
-        	++i;
+        	while (i < count) {
+	        	attribute = mAttributes.get(i);
+	            int handle = GLES20.glGetAttribLocation(mProgramId, attribute);
+	            GLES20.glEnableVertexAttribArray(handle);
+	            checkGlError("glEnableVertexAttribArray");
+	        	++i;
+        	}
         }
         
+    	/*        
         int mProjHandle  = GLES20.glGetUniformLocation(mProgramId, "uProjectionMatrix");
         int mViewHandle = GLES20.glGetUniformLocation(mProgramId, "uViewMatrix");
-        GLES20.glUniformMatrix4fv(mProjHandle, 1, false, null);
-        GLES20.glUniformMatrix4fv(mViewHandle, 1, false, null);
+        */
+        //GLES20.glUniformMatrix4fv(mProjHandle, 1, false, null);
+        //GLES20.glUniformMatrix4fv(mViewHandle, 1, false, null);
     }
     
     public final void addAttribute(String attribute) {

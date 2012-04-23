@@ -3,6 +3,7 @@ package demo.OGL2Samples;
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 
 public class OGL2SampleMainActivity extends Activity {
