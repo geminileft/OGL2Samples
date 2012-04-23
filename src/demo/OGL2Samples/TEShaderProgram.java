@@ -1,5 +1,7 @@
 package demo.OGL2Samples;
 
+import java.util.LinkedList;
+
 import android.opengl.GLES20;
 import android.util.Log;
 
@@ -7,6 +9,7 @@ public abstract class TEShaderProgram {
 	private String mVertexSource;
 	private String mFragmentSource;
 	private int mProgramId;
+	private LinkedList<String> mAttributes;
 	
 	TEShaderProgram(String vertexSource, String fragmentSource) {
 		setVertexSource(vertexSource);
@@ -38,6 +41,31 @@ public abstract class TEShaderProgram {
         }
     }
 
+    public final void activate() {
+    	GLES20.glUseProgram(mProgramId);
+        checkGlError("glUseProgram");
+        
+        int count = mAttributes.size();
+        String attribute = "";
+        if (count > 0) {
+        	int i = 0;
+        	while (i < count)
+        	attribute = mAttributes.get(i);
+            int handle = GLES20.glGetAttribLocation(mProgramId, attribute);
+            GLES20.glEnableVertexAttribArray(handle);
+            checkGlError("glEnableVertexAttribArray");
+        	++i;
+        }
+        
+        int mProjHandle  = GLES20.glGetUniformLocation(mProgramId, "uProjectionMatrix");
+        int mViewHandle = GLES20.glGetUniformLocation(mProgramId, "uViewMatrix");
+        GLES20.glUniformMatrix4fv(mProjHandle, 1, false, null);
+        GLES20.glUniformMatrix4fv(mViewHandle, 1, false, null);
+    }
+    
+    public final void addAttribute(String attribute) {
+    	mAttributes.add(attribute);
+    }
     private int loadShader(int shaderType, String source) {
         int shader = GLES20.glCreateShader(shaderType);
         GLES20.glShaderSource(shader, source);
