@@ -32,7 +32,7 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
 		TEEngine engine = TEEngine.sharedEngine();
 		TEManagerTexture texMgr = TEManagerTexture.sharedInstance();
 		mRenderPrimative = new TERenderPrimative();
-	    mRenderPrimative.textureName = texMgr.getTexture2D(R.raw.table_background);
+	    mRenderPrimative.textureName = texMgr.getTexture2D(R.raw.club_ace);
 	    mRenderPrimative.position.x = 0;
 	    mRenderPrimative.position.y = 0;
 	    mRenderPrimative.position.z = 0;

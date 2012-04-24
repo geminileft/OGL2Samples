@@ -26,7 +26,7 @@ public class TEShaderTexture extends TEShaderProgram {
 	        GLES20.glVertexAttribPointer(textureHandle, 2, GLES20.GL_FLOAT, false, 0, primatives.get(i).textureBuffer);
 	        GLES20.glVertexAttribPointer(positionHandle, 2, GLES20.GL_FLOAT, false, 0, primatives.get(i).vertexBuffer);
 	        GLES20.glUniform1f(alphaHandle, 1.0f);
-	        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, primatives.get(i).vertexCount);
+	        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, primatives.get(i).vertexCount);
 	    }
 	    
 	    deactivate();
