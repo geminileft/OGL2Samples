@@ -110,9 +110,9 @@ public class TEManagerTexture {
 		final int FLOAT_SIZE = 4;
         final float[] verticesData = {
                 // X, Y, Z, U, V
-        	-halfWidth,  -halfHeight
+        	halfWidth,  -halfHeight
+    		, -halfWidth, -halfHeight
     		, -halfWidth, halfHeight
-    		, halfWidth,  -halfHeight
     		, halfWidth, halfHeight
         };
         FloatBuffer positionBuffer = ByteBuffer.allocateDirect(verticesData.length
@@ -124,10 +124,10 @@ public class TEManagerTexture {
 	public static FloatBuffer getCoordsBuffer(TESize size) {
         final float[] coordData = {
                 // X, Y, Z, U, V
-        	0.0f,  1.0f
-    		, 0.0f, 0.0f
-    		, 1.0f,  1.0f
-    		, 0.0f, 0.0f
+        	0.0f,  0.0f
+    		, 1.0f, 0.0f
+    		, 0.0f, 1.0f
+    		, 1.0f, 1.0f
         };
         
         FloatBuffer positionBuffer = ByteBuffer.allocateDirect(coordData.length
