@@ -28,6 +28,8 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
 		int[] params = new int[1];
 		GLES20.glGetIntegerv(GLES20.GL_FRAMEBUFFER_BINDING, params, 0);
 		mScreenTarget = new TERenderTarget(params[0]);
+		TEEngine engine = TEEngine.sharedEngine();
+		engine.start();
     }
 
     public void onSurfaceChanged(GL10 glUnused, int width, int height) {

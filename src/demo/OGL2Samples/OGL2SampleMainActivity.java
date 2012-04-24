@@ -17,5 +17,8 @@ public class OGL2SampleMainActivity extends Activity {
    		view.setRenderer(new TEUtilRenderer());
    		requestWindowFeature(Window.FEATURE_NO_TITLE);
    		setContentView(view);
+   		DemoGame game = new DemoGame();
+   		TEEngine engine = TEEngine.sharedEngine();
+   		engine.setGame(game);
     }
 }
