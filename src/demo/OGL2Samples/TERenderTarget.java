@@ -17,7 +17,7 @@ class TERenderTarget {
     	ShaderTexture
     };
     
-	HashMap<TEShaderType, LinkedList<TERenderPrimative>> mShaders;
+	HashMap<TEShaderType, LinkedList<TERenderPrimative>> mShaders = new HashMap<TEShaderType, LinkedList<TERenderPrimative>>();
 	TEShaderData mShaderData;
 
 	TERenderTarget(int frameBuffer) {

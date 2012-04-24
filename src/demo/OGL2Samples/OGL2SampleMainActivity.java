@@ -3,7 +3,6 @@ package demo.OGL2Samples;
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 
 public class OGL2SampleMainActivity extends Activity {
@@ -12,6 +11,8 @@ public class OGL2SampleMainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TEManagerFile.setContext(this);
+        TEManagerTexture texMgr = TEManagerTexture.sharedInstance();
+        texMgr.setContext(this);
         GLSurfaceView view = new GLSurfaceView(this);
         view.setEGLContextClientVersion(2);
    		view.setRenderer(new TEUtilRenderer());
@@ -20,5 +21,6 @@ public class OGL2SampleMainActivity extends Activity {
    		DemoGame game = new DemoGame();
    		TEEngine engine = TEEngine.sharedEngine();
    		engine.setGame(game);
+   		engine.setView(view);
     }
 }

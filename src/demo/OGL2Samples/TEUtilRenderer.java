@@ -14,6 +14,7 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
 	
 	private TEShaderProgram mProgram;
 	private TERenderTarget mScreenTarget;
+	private TERenderPrimative mRenderPrimative;
 	
     public void onSurfaceCreated(GL10 glUnused, EGLConfig config) {
         GLES20.glEnable(GL10.GL_BLEND);
@@ -29,14 +30,25 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
 		GLES20.glGetIntegerv(GLES20.GL_FRAMEBUFFER_BINDING, params, 0);
 		mScreenTarget = new TERenderTarget(params[0]);
 		TEEngine engine = TEEngine.sharedEngine();
+		TEManagerTexture texMgr = TEManagerTexture.sharedInstance();
+		mRenderPrimative = new TERenderPrimative();
+	    mRenderPrimative.textureName = texMgr.getTexture2D(R.raw.table_background);
+	    mRenderPrimative.position.x = 0;
+	    mRenderPrimative.position.y = 0;
+	    mRenderPrimative.position.z = 0;
+	    mRenderPrimative.vertexCount = 4;
+	    mRenderPrimative.vertexBuffer = TEManagerTexture.getPositionBuffer(TESize.make(40, 40));
+	    mRenderPrimative.textureBuffer = TEManagerTexture.getCoordsBuffer(null);
 		engine.start();
     }
 
     public void onSurfaceChanged(GL10 glUnused, int width, int height) {
-        GLES20.glViewport(0, 0, width, height);
+    	mScreenTarget.setSize(TESize.make(width, height));
     }
 
     public void onDrawFrame(GL10 glUnused) {
+    	mScreenTarget.resetPrimatives();
+    	mScreenTarget.addPrimative(mRenderPrimative);
         GLES20.glClear( GLES20.GL_COLOR_BUFFER_BIT);
         runTargetShaders(mScreenTarget);
     }
