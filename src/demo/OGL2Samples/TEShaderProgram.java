@@ -8,7 +8,7 @@ import android.util.Log;
 public abstract class TEShaderProgram {
 	private String mVertexSource;
 	private String mFragmentSource;
-	private int mProgramId;
+	public int mProgramId;
 	private LinkedList<String> mAttributes = new LinkedList<String>();
 	
 	TEShaderProgram(String vertexSource, String fragmentSource) {
@@ -70,7 +70,7 @@ public abstract class TEShaderProgram {
     	mAttributes.add(attribute);
     }
     
-    public abstract void run();
+    public abstract void run(TERenderTarget target, LinkedList<TERenderPrimative> primatives);
     
     private int loadShader(int shaderType, String source) {
         int shader = GLES20.glCreateShader(shaderType);
@@ -89,5 +89,16 @@ public abstract class TEShaderProgram {
             throw new RuntimeException(op + ": glError " + error);
         }
     }
+
+	public final void deactivate() {
+		int size = mAttributes.size();
+	    if (size > 0) {
+	        for (int i = 0;i < size;++i) {
+	            int handle = GLES20.glGetAttribLocation(mProgramId, mAttributes.get(i));
+	            GLES20.glDisableVertexAttribArray(handle);
+	            checkGlError("glDisableVertexAttribArray");
+	        }
+	    }
+	}
 
 }

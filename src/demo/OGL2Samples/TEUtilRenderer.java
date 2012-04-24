@@ -1,10 +1,14 @@
 package demo.OGL2Samples;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import demo.OGL2Samples.TERenderTarget.TEShaderType;
 
 public class TEUtilRenderer implements GLSurfaceView.Renderer {
 	
@@ -32,27 +36,21 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
 
     public void onDrawFrame(GL10 glUnused) {
         GLES20.glClear( GLES20.GL_COLOR_BUFFER_BIT);
-        mProgram.activate(mScreenTarget);
-        //mProgram.run();
-/*
-    TEShaderData* shaderData;
-    TEShaderData shader;
-    uint count;
-    TERendererProgram* rp;
+        runTargetShaders(mScreenTarget);
+    }
     
-    target->activate();
-    glClear(GL_COLOR_BUFFER_BIT);
-    shaderData = target->getShaderData(count);
-    for (uint i = 0; i < count; ++i) {
-        shader = shaderData[i];
-        rp = mShaderPrograms[shader.type];
-        if (rp != NULL) {
-            rp->activate(target);
-            rp->run(target, shader.primatives, shader.primativeCount);
-        } else {
-            NSLog(@"Hrm.");
+    public void runTargetShaders(TERenderTarget target) {
+    	HashMap<TEShaderType, LinkedList<TERenderPrimative>> shaderData;
+        
+        target.activate();
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+        shaderData = target.getShaderData();
+        if (shaderData != null) {
+            for (LinkedList<TERenderPrimative> primatives : shaderData.values()) {
+                mProgram.activate(target);
+                mProgram.run(target, primatives);
+            }        	
         }
     }
- */
-    }
+
 }
