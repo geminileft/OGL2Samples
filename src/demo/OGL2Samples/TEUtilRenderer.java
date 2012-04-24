@@ -9,6 +9,7 @@ import android.opengl.GLSurfaceView;
 public class TEUtilRenderer implements GLSurfaceView.Renderer {
 	
 	private TEShaderProgram mProgram;
+	private TERenderTarget mScreenTarget;
 	
     public void onSurfaceCreated(GL10 glUnused, EGLConfig config) {
         GLES20.glEnable(GL10.GL_BLEND);
@@ -20,6 +21,9 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
 	    mProgram.addAttribute("aTextureCoords");
         GLES20.glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 		mProgram.create();
+		int[] params = new int[1];
+		GLES20.glGetIntegerv(GLES20.GL_FRAMEBUFFER_BINDING, params, 0);
+		mScreenTarget = new TERenderTarget(params[0]);
     }
 
     public void onSurfaceChanged(GL10 glUnused, int width, int height) {
@@ -28,7 +32,7 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
 
     public void onDrawFrame(GL10 glUnused) {
         GLES20.glClear( GLES20.GL_COLOR_BUFFER_BIT);
-        mProgram.activate();
+        mProgram.activate(mScreenTarget);
         //mProgram.run();
 /*
     TEShaderData* shaderData;

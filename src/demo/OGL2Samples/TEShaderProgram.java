@@ -41,8 +41,9 @@ public abstract class TEShaderProgram {
         }
     }
 
-    public final void activate() {
-    	GLES20.glUseProgram(mProgramId);
+    public final void activate(TERenderTarget target) {
+        
+        GLES20.glUseProgram(mProgramId);
         checkGlError("glUseProgram");
         
         int count = mAttributes.size();
@@ -58,12 +59,11 @@ public abstract class TEShaderProgram {
         	}
         }
         
-    	/*        
+        target.activate();
         int mProjHandle  = GLES20.glGetUniformLocation(mProgramId, "uProjectionMatrix");
         int mViewHandle = GLES20.glGetUniformLocation(mProgramId, "uViewMatrix");
-        */
-        //GLES20.glUniformMatrix4fv(mProjHandle, 1, false, null);
-        //GLES20.glUniformMatrix4fv(mViewHandle, 1, false, null);
+        GLES20.glUniformMatrix4fv(mProjHandle, 1, false, target.getProjMatrix(), 0);
+        GLES20.glUniformMatrix4fv(mViewHandle, 1, false, target.getViewMatrix(), 0);
     }
     
     public final void addAttribute(String attribute) {
