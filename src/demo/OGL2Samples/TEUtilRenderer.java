@@ -37,7 +37,7 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
 	    mRenderPrimative.position.y = 0;
 	    mRenderPrimative.position.z = 0;
 	    mRenderPrimative.vertexCount = 4;
-	    mRenderPrimative.vertexBuffer = TEManagerTexture.getPositionBuffer(TESize.make(100, 100));
+	    mRenderPrimative.vertexBuffer = TEManagerTexture.getPositionBuffer(TESize.make(484, 484));
 	    mRenderPrimative.textureBuffer = TEManagerTexture.getCoordsBuffer(null);
 		engine.start();
     }
