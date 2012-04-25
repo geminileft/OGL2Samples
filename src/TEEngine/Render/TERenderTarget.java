@@ -75,7 +75,6 @@ public class TERenderTarget {
 	    LinkedList<TERenderPrimative> primatives;
 	    
 	    type = TEShaderType.ShaderTexture;
-	
 	    if (mShaders.containsKey(type))
 	        primatives = mShaders.get(type);
 	    else {

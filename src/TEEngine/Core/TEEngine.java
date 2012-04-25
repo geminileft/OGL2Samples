@@ -17,7 +17,6 @@ public final class TEEngine implements Runnable {
 	private GLSurfaceView mView;
 	private long mPreviousTime;
 	private TERenderTarget mScreenTarget;
-	
 	public static final TEEngine sharedEngine() {
 		if (mSharedEngine == null) {
 			mSharedEngine = new TEEngine();
