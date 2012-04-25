@@ -25,6 +25,5 @@ public class OGL2SampleMainActivity extends Activity {
    		DemoGame game = new DemoGame();
    		TEEngine engine = TEEngine.sharedEngine();
    		engine.setGame(game);
-   		engine.setView(view);
     }
 }
