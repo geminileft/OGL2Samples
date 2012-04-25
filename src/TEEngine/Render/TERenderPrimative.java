@@ -1,10 +1,10 @@
-package demo.OGL2Samples;
+package TEEngine.Render;
 
 import java.nio.FloatBuffer;
 
+import TEEngine.Render.TERenderTarget.TEShaderType;
 import TEEngine.Util.TEUtilVec3;
 
-import demo.OGL2Samples.TERenderTarget.TEShaderType;
 
 public class TERenderPrimative {
 

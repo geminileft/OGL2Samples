@@ -1,4 +1,4 @@
-package demo.OGL2Samples;
+package TEEngine.Core;
 
 import android.opengl.GLSurfaceView;
 import android.util.Log;

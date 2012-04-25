@@ -1,7 +1,10 @@
-package demo.OGL2Samples;
+package TEEngine.Shader;
 
 import java.util.LinkedList;
 
+
+import TEEngine.Render.TERenderPrimative;
+import TEEngine.Render.TERenderTarget;
 import android.opengl.GLES20;
 import android.util.Log;
 

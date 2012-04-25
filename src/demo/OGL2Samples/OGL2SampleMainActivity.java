@@ -1,5 +1,6 @@
 package demo.OGL2Samples;
 
+import TEEngine.Core.TEEngine;
 import TEEngine.Manager.TEManagerFile;
 import TEEngine.Manager.TEManagerTexture;
 import TEEngine.Util.TEUtilRenderer;

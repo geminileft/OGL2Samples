@@ -1,8 +1,9 @@
-package demo.OGL2Samples;
+package TEEngine.Render;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import TEEngine.Shader.TEShaderData;
 import TEEngine.Util.TEUtilSize;
 import android.opengl.GLES20;
 import android.opengl.Matrix;

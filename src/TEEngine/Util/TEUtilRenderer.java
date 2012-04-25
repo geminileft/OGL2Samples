@@ -6,17 +6,17 @@ import java.util.LinkedList;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import TEEngine.Core.TEEngine;
 import TEEngine.Manager.TEManagerFile;
 import TEEngine.Manager.TEManagerTexture;
+import TEEngine.Render.TERenderPrimative;
+import TEEngine.Render.TERenderTarget;
+import TEEngine.Render.TERenderTarget.TEShaderType;
+import TEEngine.Shader.TEShaderProgram;
+import TEEngine.Shader.TEShaderTexture;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import demo.OGL2Samples.R;
-import demo.OGL2Samples.TEEngine;
-import demo.OGL2Samples.TERenderPrimative;
-import demo.OGL2Samples.TERenderTarget;
-import demo.OGL2Samples.TERenderTarget.TEShaderType;
-import demo.OGL2Samples.TEShaderProgram;
-import demo.OGL2Samples.TEShaderTexture;
 
 public class TEUtilRenderer implements GLSurfaceView.Renderer {
 	
