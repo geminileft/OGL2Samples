@@ -3,7 +3,7 @@ package demo.OGL2Samples;
 import TEEngine.Core.TEEngine;
 import TEEngine.Manager.TEManagerFile;
 import TEEngine.Manager.TEManagerTexture;
-import TEEngine.Util.TEUtilRenderer;
+import TEEngine.Render.TERenderer;
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ public class OGL2SampleMainActivity extends Activity {
         texMgr.setContext(this);
         GLSurfaceView view = new GLSurfaceView(this);
         view.setEGLContextClientVersion(2);
-   		view.setRenderer(new TEUtilRenderer());
+   		view.setRenderer(new TERenderer());
    		requestWindowFeature(Window.FEATURE_NO_TITLE);
    		setContentView(view);
    		DemoGame game = new DemoGame();
