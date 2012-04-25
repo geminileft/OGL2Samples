@@ -7,6 +7,7 @@ import TEEngine.Shader.TEShaderData;
 import TEEngine.Util.TEUtilSize;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
+import android.util.Log;
 
 public class TERenderTarget {
 	
@@ -20,6 +21,7 @@ public class TERenderTarget {
     };
     
 	HashMap<TEShaderType, LinkedList<TERenderPrimative>> mShaders = new HashMap<TEShaderType, LinkedList<TERenderPrimative>>();
+	HashMap<TEShaderType, LinkedList<TERenderPrimative>> mShaderBuffer = new HashMap<TEShaderType, LinkedList<TERenderPrimative>>();
 	TEShaderData mShaderData;
 
 	public TERenderTarget(int frameBuffer) {
@@ -85,6 +87,18 @@ public class TERenderTarget {
 	}
 
 	public HashMap<TEShaderType, LinkedList<TERenderPrimative>> getShaderData() {
-	    return mShaders;
+		Log.v("getShaderData", "trying to locate error");
+		synchronized(mShaderBuffer) {
+			mShaderBuffer.clear();
+			for (TEShaderType key : mShaders.keySet()) {
+				LinkedList<TERenderPrimative> list = new LinkedList<TERenderPrimative>();
+				for (TERenderPrimative primative : mShaders.get(key)) {
+					list.add(primative);
+				}
+				mShaderBuffer.put(key, list);
+			}
+		}
+		mShaders.clear();
+	    return mShaderBuffer;
 	}
 }

@@ -9,7 +9,7 @@ import TEEngine.Render.TERenderTarget;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
 
-public final class TEEngine implements Runnable {
+public final class TEEngine {
 	private final int MAX_FRAME_TIME = 1000 / 30;//cap frame duration to 30fps
 	private static TEEngine mSharedEngine;
 	private Vector<TEGameObject> mGameObjects = new Vector<TEGameObject>();
@@ -27,20 +27,16 @@ public final class TEEngine implements Runnable {
 	public final void start() {
 		Log.v("start", "Start");
 		mGame.start();
-		Thread thread = new Thread(this);
-		thread.start();
+		mPreviousTime = TEManagerTime.currentTime();
 	}
 	
 	public void run() {
 		TEManagerRender renderMgr = TEManagerRender.sharedManager();
-		while(true) {
-			final long currentTime = TEManagerTime.currentTime();
-			long dt = currentTime - mPreviousTime;
-			mPreviousTime = currentTime;
-			dt = (dt > MAX_FRAME_TIME) ? MAX_FRAME_TIME : dt;
-			renderMgr.update(dt);
-			mView.postInvalidate();			
-		}
+		final long currentTime = TEManagerTime.currentTime();
+		long dt = currentTime - mPreviousTime;
+		mPreviousTime = currentTime;
+		dt = (dt > MAX_FRAME_TIME) ? MAX_FRAME_TIME : dt;
+		renderMgr.update(dt);
 	}
 	
 	public void setGame(TEGame game) {
