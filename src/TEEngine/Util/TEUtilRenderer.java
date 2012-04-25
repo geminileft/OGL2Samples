@@ -1,4 +1,4 @@
-package demo.OGL2Samples;
+package TEEngine.Util;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -6,9 +6,17 @@ import java.util.LinkedList;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import TEEngine.Manager.TEManagerFile;
+import TEEngine.Manager.TEManagerTexture;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import demo.OGL2Samples.R;
+import demo.OGL2Samples.TEEngine;
+import demo.OGL2Samples.TERenderPrimative;
+import demo.OGL2Samples.TERenderTarget;
 import demo.OGL2Samples.TERenderTarget.TEShaderType;
+import demo.OGL2Samples.TEShaderProgram;
+import demo.OGL2Samples.TEShaderTexture;
 
 public class TEUtilRenderer implements GLSurfaceView.Renderer {
 	
@@ -37,13 +45,13 @@ public class TEUtilRenderer implements GLSurfaceView.Renderer {
 	    mRenderPrimative.position.y = 0;
 	    mRenderPrimative.position.z = 0;
 	    mRenderPrimative.vertexCount = 4;
-	    mRenderPrimative.vertexBuffer = TEManagerTexture.getPositionBuffer(TESize.make(484, 484));
+	    mRenderPrimative.vertexBuffer = TEManagerTexture.getPositionBuffer(TEUtilSize.make(484, 484));
 	    mRenderPrimative.textureBuffer = TEManagerTexture.getCoordsBuffer(null);
 		engine.start();
     }
 
     public void onSurfaceChanged(GL10 glUnused, int width, int height) {
-    	mScreenTarget.setSize(TESize.make(width, height));
+    	mScreenTarget.setSize(TEUtilSize.make(width, height));
     }
 
     public void onDrawFrame(GL10 glUnused) {

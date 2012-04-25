@@ -1,4 +1,4 @@
-package demo.OGL2Samples;
+package TEEngine.Manager;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,6 +7,8 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.HashMap;
 
+
+import TEEngine.Util.TEUtilSize;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -104,7 +106,7 @@ public class TEManagerTexture {
 		return c;
 	}
 
-	public static FloatBuffer getPositionBuffer(TESize size) {
+	public static FloatBuffer getPositionBuffer(TEUtilSize size) {
 		final float halfWidth = size.width / 2;
 		final float halfHeight = size.height / 2;
 		final int FLOAT_SIZE = 4;
@@ -121,7 +123,7 @@ public class TEManagerTexture {
         return positionBuffer;
 	}
 
-	public static FloatBuffer getCoordsBuffer(TESize size) {
+	public static FloatBuffer getCoordsBuffer(TEUtilSize size) {
         final float[] coordData = {
                 // X, Y, Z, U, V
         	0.0f,  1.0f

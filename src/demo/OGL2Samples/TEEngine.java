@@ -25,7 +25,7 @@ public final class TEEngine implements Runnable {
 	public void run() {
 		while(true) {
 			
-			Log.v("here", "here");
+			//Log.v("here", "here");
 			mView.postInvalidate();			
 		}
 	}

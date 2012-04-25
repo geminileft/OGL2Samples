@@ -1,5 +1,8 @@
 package demo.OGL2Samples;
 
+import TEEngine.Manager.TEManagerFile;
+import TEEngine.Manager.TEManagerTexture;
+import TEEngine.Util.TEUtilRenderer;
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;

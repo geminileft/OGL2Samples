@@ -3,10 +3,11 @@ package demo.OGL2Samples;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import TEEngine.Util.TEUtilSize;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
-class TERenderTarget {
+public class TERenderTarget {
 	
 	private int mFrameBuffer;
 	private int mFrameWidth;
@@ -20,11 +21,11 @@ class TERenderTarget {
 	HashMap<TEShaderType, LinkedList<TERenderPrimative>> mShaders = new HashMap<TEShaderType, LinkedList<TERenderPrimative>>();
 	TEShaderData mShaderData;
 
-	TERenderTarget(int frameBuffer) {
+	public TERenderTarget(int frameBuffer) {
 		mFrameBuffer = frameBuffer;
 	}
 
-	void setSize(TESize size) {
+	public void setSize(TEUtilSize size) {
 	    mFrameWidth = size.width;
 	    mFrameHeight = size.height;
 	    
@@ -39,36 +40,36 @@ class TERenderTarget {
 	    Matrix.translateM(mViewMatrix, 0, 0.0f, 0.0f, -zDepth);    
 	}
 
-	int getFrameBuffer() {
+	public int getFrameBuffer() {
 		return mFrameBuffer;
 	}
 
-	int getFrameWidth()  {
+	public int getFrameWidth()  {
 		return mFrameWidth;
 	}
 
-	int getFrameHeight() {
+	public int getFrameHeight() {
 	    return mFrameHeight;
 	}
 
-	void resetPrimatives() {
+	public void resetPrimatives() {
 	    mShaders.clear();
 	}
 
-	void activate() {
+	public void activate() {
 	    GLES20.glViewport(0, 0, mFrameWidth, mFrameHeight);
 	    GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, mFrameBuffer);
 	}
 
-	float[] getProjMatrix() {
+	public float[] getProjMatrix() {
 	    return mProjMatrix;
 	}
 
-	float[] getViewMatrix() {
+	public float[] getViewMatrix() {
 	    return mViewMatrix;
 	}
 
-	void addPrimative(TERenderPrimative primative) {
+	public void addPrimative(TERenderPrimative primative) {
 	    TEShaderType type;
 	    LinkedList<TERenderPrimative> primatives;
 	    
@@ -83,7 +84,7 @@ class TERenderTarget {
 	    primatives.add(primative);
 	}
 
-	HashMap<TEShaderType, LinkedList<TERenderPrimative>> getShaderData() {
+	public HashMap<TEShaderType, LinkedList<TERenderPrimative>> getShaderData() {
 	    return mShaders;
 	}
 }

@@ -1,4 +1,4 @@
-package demo.OGL2Samples;
+package TEEngine.Manager;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;

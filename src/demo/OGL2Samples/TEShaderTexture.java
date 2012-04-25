@@ -2,11 +2,12 @@ package demo.OGL2Samples;
 
 import java.util.LinkedList;
 
+import TEEngine.Util.TEUtilVec3;
 import android.opengl.GLES20;
 
 public class TEShaderTexture extends TEShaderProgram {
 
-	TEShaderTexture(String vertexSource, String fragmentSource) {
+	public TEShaderTexture(String vertexSource, String fragmentSource) {
 		super(vertexSource, fragmentSource);
 	}
 
@@ -17,7 +18,7 @@ public class TEShaderTexture extends TEShaderProgram {
 	    int coordsHandle = GLES20.glGetAttribLocation(mProgramId, "aPosition");
 	    int alphaHandle = GLES20.glGetUniformLocation(mProgramId, "uAlpha");
 	    
-	    TEVec3 vec;
+	    TEUtilVec3 vec;
 	    int primativeCount = primatives.size();
 	    for (int i = 0;i < primativeCount;++i) {
 	        vec = primatives.get(i).position;
