@@ -24,6 +24,7 @@ public class TERenderer implements GLSurfaceView.Renderer {
 	private TERenderPrimative mRenderPrimative;
 	
     public void onSurfaceCreated(GL10 glUnused, EGLConfig config) {
+		TEEngine engine = TEEngine.sharedEngine();
         GLES20.glEnable(GL10.GL_BLEND);
 		GLES20.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
 		String vertexSource = TEManagerFile.readFileContents("texture.vs");
@@ -36,7 +37,7 @@ public class TERenderer implements GLSurfaceView.Renderer {
 		int[] params = new int[1];
 		GLES20.glGetIntegerv(GLES20.GL_FRAMEBUFFER_BINDING, params, 0);
 		mScreenTarget = new TERenderTarget(params[0]);
-		TEEngine engine = TEEngine.sharedEngine();
+		engine.setScreenTarget(mScreenTarget);
 		TEManagerTexture texMgr = TEManagerTexture.sharedInstance();
 		mRenderPrimative = new TERenderPrimative();
 	    mRenderPrimative.textureName = texMgr.getTexture2D(R.raw.club_ace);
