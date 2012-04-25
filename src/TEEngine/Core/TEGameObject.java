@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import TEEngine.Manager.TEManagerComponent;
-import TEEngine.Util.TEPoint;
+import TEEngine.Util.TEUtilPoint;
 import TEEngine.Util.TEUtilSize;
 
 public class TEGameObject extends TEManagerComponent {
@@ -26,7 +26,7 @@ public class TEGameObject extends TEManagerComponent {
 	private HashMap<TEComponent.Event, Vector<TEComponent.EventListener>> mEventSubscribers = new HashMap<TEComponent.Event, Vector<TEComponent.EventListener>>(); 
 	
 	public TEUtilSize size = TEUtilSize.make(0, 0);
-	public TEPoint position = TEPoint.make(0, 0);
+	public TEUtilPoint position = TEUtilPoint.make(0, 0);
 	
 	public TEGameObject() {
 		super();

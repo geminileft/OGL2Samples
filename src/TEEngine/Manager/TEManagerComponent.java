@@ -1,18 +1,19 @@
 package TEEngine.Manager;
 
+import java.util.LinkedList;
+
 import TEEngine.Core.TEComponent;
-import TEEngine.Util.TEComponentContainer;
 
 
-public abstract class TEManagerComponent extends TEManagerAbstract {
-	private TEComponentContainer mComponents;
+public abstract class TEManagerComponent {
+	private LinkedList<TEComponent> mComponents;
 	
 	public TEManagerComponent() {
-		mComponents = new TEComponentContainer();
+		mComponents = new LinkedList<TEComponent>();
 	}
 
 	public void update(long dt) {
-		TEComponentContainer components = getComponents();
+		LinkedList<TEComponent> components = getComponents();
 		final int size = components.size();
 		for(int i = 0; i < size; ++i) {
 			TEComponent component = components.get(i);
@@ -33,7 +34,7 @@ public abstract class TEManagerComponent extends TEManagerAbstract {
 		component.setManager(this);
 	}
 	
-	public final TEComponentContainer getComponents() {
+	public final LinkedList<TEComponent> getComponents() {
 		return mComponents;
 	}
 
