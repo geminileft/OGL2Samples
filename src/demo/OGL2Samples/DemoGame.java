@@ -21,7 +21,7 @@ public class DemoGame extends TEGame {
 	    go.position.y = 0.0f;
 
 	    go.addComponent(ri);
-	    //engine.addGameObject(go);
+	    engine.addGameObject(go);
 		Log.v("DemoGame", "start");
 	}
 }

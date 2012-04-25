@@ -8,20 +8,17 @@ import javax.microedition.khronos.opengles.GL10;
 
 import TEEngine.Core.TEEngine;
 import TEEngine.Manager.TEManagerFile;
-import TEEngine.Manager.TEManagerTexture;
 import TEEngine.Render.TERenderTarget.TEShaderType;
 import TEEngine.Shader.TEShaderProgram;
 import TEEngine.Shader.TEShaderTexture;
 import TEEngine.Util.TEUtilSize;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
-import demo.OGL2Samples.R;
 
 public class TERenderer implements GLSurfaceView.Renderer {
 	
 	private TEShaderProgram mProgram;
 	private TERenderTarget mScreenTarget;
-	private TERenderPrimative mRenderPrimative;
 	
     public void onSurfaceCreated(GL10 glUnused, EGLConfig config) {
 		TEEngine engine = TEEngine.sharedEngine();
@@ -38,15 +35,6 @@ public class TERenderer implements GLSurfaceView.Renderer {
 		GLES20.glGetIntegerv(GLES20.GL_FRAMEBUFFER_BINDING, params, 0);
 		mScreenTarget = new TERenderTarget(params[0]);
 		engine.setScreenTarget(mScreenTarget);
-		TEManagerTexture texMgr = TEManagerTexture.sharedInstance();
-		mRenderPrimative = new TERenderPrimative();
-	    mRenderPrimative.textureName = texMgr.getTexture2D(R.raw.club_ace);
-	    mRenderPrimative.position.x = 0;
-	    mRenderPrimative.position.y = 0;
-	    mRenderPrimative.position.z = 0;
-	    mRenderPrimative.vertexCount = 4;
-	    mRenderPrimative.vertexBuffer = TEManagerTexture.getPositionBuffer(TEUtilSize.make(484, 484));
-	    mRenderPrimative.textureBuffer = TEManagerTexture.getCoordsBuffer(null);
 		engine.start();
     }
 
@@ -56,7 +44,6 @@ public class TERenderer implements GLSurfaceView.Renderer {
 
     public void onDrawFrame(GL10 glUnused) {
     	mScreenTarget.resetPrimatives();
-    	mScreenTarget.addPrimative(mRenderPrimative);
         GLES20.glClear( GLES20.GL_COLOR_BUFFER_BIT);
         runTargetShaders(mScreenTarget);
     }
