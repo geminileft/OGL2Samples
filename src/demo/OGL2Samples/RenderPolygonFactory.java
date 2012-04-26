@@ -8,7 +8,7 @@ import TEEngine.Util.TEColor4;
 import TEEngine.Util.TEUtilSize;
 
 public class RenderPolygonFactory {
-	public RenderPolygon roundedRectCorner(TEColor4 color, float radius, int density) {
+	public static RenderPolygon roundedRectCorner(TEColor4 color, float radius, int density) {
     final float halfHeight = radius;
     final float halfWidth = radius;
     final int offset = 4;
@@ -92,7 +92,7 @@ public class RenderPolygonFactory {
 	    return rf;
 	}
 
-	public RenderPolygon roundedRect(TEUtilSize size, TEColor4 color, float radius, int density) {    
+	public static RenderPolygon roundedRect(TEUtilSize size, TEColor4 color, float radius, int density) {    
     final float halfHeight = (float)size.height / 2;
     final float halfWidth = (float)size.width / 2;
     final int vertexCount = 9 + (4 * density);
@@ -205,7 +205,7 @@ public class RenderPolygonFactory {
     return rf;
 }
 
-	private double deg2rad(double deg) {
+	private static double deg2rad(double deg) {
 	    return (deg * 3.14159265358979323846f / 180.0f);
 	}
 }
