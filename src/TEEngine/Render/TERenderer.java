@@ -2,6 +2,7 @@ package TEEngine.Render;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Set;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -74,14 +75,14 @@ public class TERenderer implements GLSurfaceView.Renderer {
         target.activate();
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         shaderData = target.getShaderData();
+        Set<TEShaderType> keySet;
 		if (shaderData != null) {
-			for (TEShaderType type : shaderData.keySet()) {
+			keySet = shaderData.keySet();
+			for (TEShaderType type : keySet) {
 				rp = mShaderPrograms.get(type);
 				if (rp != null) {
-					for (LinkedList<TERenderPrimative> primatives : shaderData.values()) {
 					    rp.activate(target);
-					    rp.run(target, primatives);
-					}        	
+					    rp.run(target, shaderData.get(type));
 				} else {
 					Log.v("No Shader", "hrm");
 				}

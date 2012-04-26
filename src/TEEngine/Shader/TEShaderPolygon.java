@@ -13,6 +13,7 @@ public class TEShaderPolygon extends TEShaderProgram {
 	}
 
 	public void run(TERenderTarget target, LinkedList<TERenderPrimative> primatives) {
+	    activate(target);
 	    int vertexHandle = GLES20.glGetAttribLocation(mProgramId, "aVertices");
 	    int colorHandle = GLES20.glGetUniformLocation(mProgramId, "aColor");
 	    int posHandle = GLES20.glGetAttribLocation(mProgramId, "aPosition");

@@ -11,7 +11,7 @@ import android.util.Log;
 public class DemoGame extends TEGame {
 
 	public void start() {
-		//imageDemo();
+		imageDemo();
 		polyDemo();
 		Log.v("DemoGame", "start");
 	}
@@ -24,7 +24,7 @@ public class DemoGame extends TEGame {
 	    size = TEUtilSize.make(160, 160);
 	    RenderImage ri = new RenderImage(R.raw.club_ace, TEUtilPoint.make(0, 0), size);
 
-	    go.position.x = 0.0f;
+	    go.position.x = -80.0f;
 	    go.position.y = 0.0f;
 
 	    go.addComponent(ri);
@@ -57,7 +57,7 @@ public class DemoGame extends TEGame {
 	    //rp->setRenderTarget(rtt->getTargetFrameBuffer());
 	    go.addComponent(rp);
 	    
-	    go.position.x = 0.0f;
+	    go.position.x = 82.0f;
 	    go.position.y = 0.0f;
 	    
 	    engine.addGameObject(go);

@@ -29,9 +29,6 @@ public class RenderImage extends TEComponentRender {
 		TEManagerTexture texMgr = TEManagerTexture.sharedInstance();
 		mRenderPrimative = new TERenderPrimative();
 	    mRenderPrimative.textureName = texMgr.getTexture2D(R.raw.club_ace);
-	    mRenderPrimative.position.x = 0;
-	    mRenderPrimative.position.y = 0;
-	    mRenderPrimative.position.z = 0;
 	    mRenderPrimative.vertexCount = 4;
 	    mRenderPrimative.vertexBuffer = TEManagerTexture.getPositionBuffer(TEUtilSize.make(size.width, size.height));
 	    mRenderPrimative.textureBuffer = TEManagerTexture.getCoordsBuffer(null);
@@ -43,6 +40,9 @@ public class RenderImage extends TEComponentRender {
 
 	@Override
 	public void update(long dt) {
+	    mRenderPrimative.position.x = parent.position.x;
+	    mRenderPrimative.position.y = parent.position.y;
+	    mRenderPrimative.position.z = 0;
 	    mRenderTarget.addPrimative(mRenderPrimative);		
 	}
 	
