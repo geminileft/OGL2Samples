@@ -1,5 +1,7 @@
 package demo.OGL2Samples;
 
+import java.nio.FloatBuffer;
+
 import TEEngine.Core.TEComponentRender;
 import TEEngine.Render.TERenderPrimative;
 import TEEngine.Util.TEColor4;
@@ -53,18 +55,8 @@ class RenderPolygon extends TEComponentRender {
 	    mA = color.a;
 	}
 
-	/*
-void setVertices(float[] vertices, int vertexCount) {
-    int memSize = vertexCount * 2 * sizeof(float);
-    if (mRenderPrimative.vertexCount > 0) {
-        free(mRenderPrimative.vertexBuffer);
-    }
-    mRenderPrimative.vertexCount = vertexCount;
-    mRenderPrimative.vertexBuffer = (float*)malloc(memSize);
-    mVertices = mRenderPrimative.vertexBuffer;
-    memcpy(mRenderPrimative.vertexBuffer, vertices, memSize);
-    mVertexCount = vertexCount;
-    mRenderPrimative.vertexCount = vertexCount;
-}
-*/
+	public void setVertices(FloatBuffer vertexBuffer, int vertexCount) {
+	    mRenderPrimative.vertexCount = vertexCount;
+	    mRenderPrimative.vertexBuffer = vertexBuffer;
+	}
 }
