@@ -10,7 +10,6 @@ import android.opengl.Matrix;
 import android.util.Log;
 
 public class TERenderTarget {
-	
 	private int mFrameBuffer;
 	private int mFrameWidth;
     private int mFrameHeight;
@@ -18,6 +17,7 @@ public class TERenderTarget {
     float mViewMatrix[] = new float[16];
     public enum TEShaderType {
     	ShaderTexture
+    	, ShaderPolygon
     };
     
 	HashMap<TEShaderType, LinkedList<TERenderPrimative>> mShaders = new HashMap<TEShaderType, LinkedList<TERenderPrimative>>();
@@ -73,10 +73,19 @@ public class TERenderTarget {
 	}
 
 	public void addPrimative(TERenderPrimative primative) {
-	    TEShaderType type;
+	    
+		TEShaderType type;
 	    LinkedList<TERenderPrimative> primatives;
 	    
-	    type = TEShaderType.ShaderTexture;
+	    if (primative.textureBuffer == null) {
+	        type = TEShaderType.ShaderPolygon;
+	    } else {
+	        if (primative.extraData != null) {
+	            type = primative.extraType;
+	        } else {
+	            type = TEShaderType.ShaderTexture;
+	        }
+	    }
 	    if (mShaders.containsKey(type))
 	        primatives = mShaders.get(type);
 	    else {
