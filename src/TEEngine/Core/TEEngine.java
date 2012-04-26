@@ -5,7 +5,6 @@ import java.util.Vector;
 
 import TEEngine.Manager.TEManagerRender;
 import TEEngine.Manager.TEManagerTime;
-import TEEngine.Render.TERenderTarget;
 
 public final class TEEngine implements Runnable {
 	private final int MAX_FRAME_TIME = 1000 / 30;//cap frame duration to 30fps
@@ -13,7 +12,6 @@ public final class TEEngine implements Runnable {
 	private Vector<TEGameObject> mGameObjects = new Vector<TEGameObject>();
 	private TEGame mGame;
 	private long mPreviousTime;
-	private TERenderTarget mScreenTarget;
 	public static final TEEngine sharedEngine() {
 		if (mSharedEngine == null) {
 			mSharedEngine = new TEEngine();
@@ -50,13 +48,5 @@ public final class TEEngine implements Runnable {
 			}
 		}
 		mGameObjects.add(gameObject);
-	}
-
-	public TERenderTarget getScreenTarget() {
-		return mScreenTarget;
-	}
-	
-	public void setScreenTarget(TERenderTarget target) {
-		mScreenTarget = target;
 	}
 }
