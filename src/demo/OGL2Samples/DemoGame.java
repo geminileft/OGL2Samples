@@ -11,7 +11,8 @@ import android.util.Log;
 public class DemoGame extends TEGame {
 
 	public void start() {
-		imageDemo();
+		//imageDemo();
+		polyDemo();
 		Log.v("DemoGame", "start");
 	}
 	
@@ -38,17 +39,17 @@ public class DemoGame extends TEGame {
 		RenderPolygon rp;
 		int radius;
 	    go = new TEGameObject();
-	    color = TEColor4.make(1.0f, 0.0f, 0.0f, 1.0f);
-	    size = TEUtilSize.make(160, 160);
+	    color = TEColor4.make(0.0f, 0.0f, 0.0f, 1.0f);
+	    size = TEUtilSize.make(164, 164);
 	    radius = 5;
 	    
 	    rp = RenderPolygonFactory.roundedRect(size, color, (float)radius, radius);
 	    //rp->setRenderTarget(rtt->getTargetFrameBuffer());
 	    go.addComponent(rp);
 	    
-	    size.width += 4;
-	    size.height += 4;
-	    color.r = 0.0f;
+	    size.width -= 4;
+	    size.height -= 4;
+	    color.r = 1.0f;
 	    color.g = 0.0f;
 	    color.b = 0.0f;
 	    color.a = 1.0f;

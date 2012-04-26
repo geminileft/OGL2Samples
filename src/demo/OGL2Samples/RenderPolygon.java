@@ -11,7 +11,7 @@ class RenderPolygon extends TEComponentRender {
 	private float mG;
 	private float mB;
 	private float mA;
-	private TERenderPrimative mRenderPrimative;
+	private TERenderPrimative mRenderPrimative = new TERenderPrimative();
 
 	
 	public RenderPolygon() {

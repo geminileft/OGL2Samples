@@ -9,6 +9,7 @@ import javax.microedition.khronos.opengles.GL10;
 import TEEngine.Core.TEEngine;
 import TEEngine.Manager.TEManagerFile;
 import TEEngine.Render.TERenderTarget.TEShaderType;
+import TEEngine.Shader.TEShaderPolygon;
 import TEEngine.Shader.TEShaderProgram;
 import TEEngine.Shader.TEShaderTexture;
 import TEEngine.Util.TEUtilSize;
@@ -22,21 +23,33 @@ public class TERenderer implements GLSurfaceView.Renderer {
     private HashMap<TEShaderType, TEShaderProgram> mShaderPrograms = new HashMap<TEShaderType, TEShaderProgram>();
 
     public void onSurfaceCreated(GL10 glUnused, EGLConfig config) {
-		TEEngine engine = TEEngine.sharedEngine();
         GLES20.glEnable(GL10.GL_BLEND);
 		GLES20.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
-		String vertexSource = TEManagerFile.readFileContents("texture.vs");
-		String fragmentSource = TEManagerFile.readFileContents("texture.fs");
+        GLES20.glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+        String vertexSource;
+        String fragmentSource;
 		TEShaderProgram program;
+		
+		vertexSource = TEManagerFile.readFileContents("texture.vs");
+		fragmentSource = TEManagerFile.readFileContents("texture.fs");
 		program = new TEShaderTexture(vertexSource, fragmentSource);
 	    program.addAttribute("aVertices");
 	    program.addAttribute("aTextureCoords");
-        GLES20.glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 		program.create();
 		mShaderPrograms.put(TEShaderType.ShaderTexture, program);
+		
+		vertexSource = TEManagerFile.readFileContents("colorbox.vs");
+		fragmentSource = TEManagerFile.readFileContents("colorbox.fs");
+		program = new TEShaderPolygon(vertexSource, fragmentSource);
+	    program.addAttribute("aVertices");
+		program.create();
+		mShaderPrograms.put(TEShaderType.ShaderPolygon, program);
+		
 		int[] params = new int[1];
 		GLES20.glGetIntegerv(GLES20.GL_FRAMEBUFFER_BINDING, params, 0);
 		mScreenTarget = new TERenderTarget(params[0]);
+		
+		TEEngine engine = TEEngine.sharedEngine();
 		engine.setScreenTarget(mScreenTarget);
 		engine.start();
     }
