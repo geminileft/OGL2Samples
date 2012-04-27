@@ -11,6 +11,7 @@ import TEEngine.Core.TEComponentRender;
 import TEEngine.Core.TEEngine;
 import TEEngine.Manager.TEManagerFile;
 import TEEngine.Render.TERenderTarget.TEShaderType;
+import TEEngine.Shader.TEShaderKernel;
 import TEEngine.Shader.TEShaderPolygon;
 import TEEngine.Shader.TEShaderProgram;
 import TEEngine.Shader.TEShaderTexture;
@@ -34,6 +35,13 @@ public class TERenderer implements GLSurfaceView.Renderer {
         String fragmentSource;
 		TEShaderProgram program;
 		
+		vertexSource = TEManagerFile.readFileContents("colorbox.vs");
+		fragmentSource = TEManagerFile.readFileContents("colorbox.fs");
+		program = new TEShaderPolygon(vertexSource, fragmentSource);
+	    program.addAttribute("aVertices");
+		program.create();
+		mShaderPrograms.put(TEShaderType.ShaderPolygon, program);
+		
 		vertexSource = TEManagerFile.readFileContents("texture.vs");
 		fragmentSource = TEManagerFile.readFileContents("texture.fs");
 		program = new TEShaderTexture(vertexSource, fragmentSource);
@@ -42,13 +50,20 @@ public class TERenderer implements GLSurfaceView.Renderer {
 		program.create();
 		mShaderPrograms.put(TEShaderType.ShaderTexture, program);
 		
-		vertexSource = TEManagerFile.readFileContents("colorbox.vs");
-		fragmentSource = TEManagerFile.readFileContents("colorbox.fs");
-		program = new TEShaderPolygon(vertexSource, fragmentSource);
+		fragmentSource = TEManagerFile.readFileContents("blur.fs");
+		program = new TEShaderKernel(vertexSource, fragmentSource);
 	    program.addAttribute("aVertices");
+	    program.addAttribute("aTextureCoords");
 		program.create();
-		mShaderPrograms.put(TEShaderType.ShaderPolygon, program);
-		
+		mShaderPrograms.put(TEShaderType.ShaderKernel, program);
+
+	    fragmentSource = TEManagerFile.readFileContents("transparentcolor.fs");
+	    program = new TEShaderTexture(vertexSource, fragmentSource);
+	    program.addAttribute("aVertices");
+	    program.addAttribute("aTextureCoords");
+	    program.create();
+	    mShaderPrograms.put(TEShaderType.ShaderTransparentColor, program);
+	    
 		int[] params = new int[1];
 		GLES20.glGetIntegerv(GLES20.GL_FRAMEBUFFER_BINDING, params, 0);
 		mScreenFrameBuffer = params[0];
@@ -93,7 +108,8 @@ public class TERenderer implements GLSurfaceView.Renderer {
 				rp = mShaderPrograms.get(type);
 				if (rp != null) {
 					    rp.activate(target);
-					    rp.run(target, shaderData.get(type));
+					    LinkedList<TERenderPrimative> primatives = shaderData.get(type);
+					    rp.run(target, primatives);
 				} else {
 					Log.v("No Shader", "hrm");
 				}
