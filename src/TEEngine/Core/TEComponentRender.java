@@ -56,4 +56,8 @@ public abstract class TEComponentRender extends TEComponent {
 	    mExtraType = TEShaderType.ShaderTransparentColor;
 	}
 
+	public void setGrayscale() {
+	    mExtra = new Object();
+	    mExtraType = TEShaderType.ShaderGrayscale;
+	}
 }

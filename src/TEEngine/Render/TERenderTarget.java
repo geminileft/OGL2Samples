@@ -20,6 +20,7 @@ public class TERenderTarget {
     	, ShaderPolygon
     	, ShaderKernel
     	, ShaderTransparentColor
+    	, ShaderGrayscale
     };
     
 	HashMap<TEShaderType, LinkedList<TERenderPrimative>> mShaders = new HashMap<TEShaderType, LinkedList<TERenderPrimative>>();

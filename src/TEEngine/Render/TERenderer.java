@@ -64,6 +64,13 @@ public class TERenderer implements GLSurfaceView.Renderer {
 	    program.create();
 	    mShaderPrograms.put(TEShaderType.ShaderTransparentColor, program);
 	    
+	    fragmentSource = TEManagerFile.readFileContents("grayscale.fs");
+	    program = new TEShaderTexture(vertexSource, fragmentSource);
+	    program.addAttribute("aVertices");
+	    program.addAttribute("aTextureCoords");
+	    program.create();
+	    mShaderPrograms.put(TEShaderType.ShaderGrayscale, program);
+
 		int[] params = new int[1];
 		GLES20.glGetIntegerv(GLES20.GL_FRAMEBUFFER_BINDING, params, 0);
 		mScreenFrameBuffer = params[0];

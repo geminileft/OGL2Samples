@@ -24,7 +24,9 @@ public class DemoGame extends TEGame {
 		RenderImage ri;
 	    go = new TEGameObject();
 	    size = TEUtilSize.make(160, 160);
-	    ri = new RenderImage(R.raw.club_ace, TEUtilPoint.make(0, 0), size);
+	    ri = new RenderImage(R.raw.diamond_ace, TEUtilPoint.make(0, 0), size);
+	    ri.setGrayscale();
+	    /*
 	    float kernel[] = new float[9];
 	    kernel[0] = 1.0f/9.0f;
 	    kernel[1] = 1.0f/9.0f;
@@ -36,7 +38,8 @@ public class DemoGame extends TEGame {
 	    kernel[7] = 1.0f/9.0f;
 	    kernel[8] = 1.0f/9.0f;
 	    ri.setKernel(kernel);
-
+		*/
+	    
 	    go.position.x = -80.0f;
 	    go.position.y = 0.0f;
 
@@ -45,7 +48,7 @@ public class DemoGame extends TEGame {
 
 	    go = new TEGameObject();
 	    size = TEUtilSize.make(160, 160);
-	    ri = new RenderImage(R.raw.diamond_ace, TEUtilPoint.make(0, 0), size);
+	    ri = new RenderImage(R.raw.spade_ace, TEUtilPoint.make(0, 0), size);
 
 	    go.position.x = 80.0f;
 	    go.position.y = 0.0f;

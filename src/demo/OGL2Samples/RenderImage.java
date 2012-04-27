@@ -28,7 +28,7 @@ public class RenderImage extends TEComponentRender {
 		super();
 		TEManagerTexture texMgr = TEManagerTexture.sharedInstance();
 		mRenderPrimative = new TERenderPrimative();
-	    mRenderPrimative.textureName = texMgr.getTexture2D(R.raw.club_ace);
+	    mRenderPrimative.textureName = texMgr.getTexture2D(resourceId);
 	    mRenderPrimative.vertexCount = 4;
 	    mRenderPrimative.vertexBuffer = TEManagerTexture.getPositionBuffer(TEUtilSize.make(size.width, size.height));
 	    mRenderPrimative.textureBuffer = TEManagerTexture.getCoordsBuffer(null);
