@@ -11,9 +11,9 @@ import android.util.Log;
 public class DemoGame extends TEGame {
 
 	public void start() {
-		imageDemo();
+		//imageDemo();
 		//polyDemo();
-		//renderToTextureDemo();
+		renderToTextureDemo();
 		Log.v("DemoGame", "start");
 	}
 	
@@ -119,6 +119,7 @@ public class DemoGame extends TEGame {
 	    go.position.y = 0.0f;
 	    
 	    rtt  = new RenderToTexture(256);
+	    /*
 	    float kernel[] = new float[9];
 	    kernel[0] = 1.0f/9.0f;
 	    kernel[1] = 1.0f/9.0f;
@@ -130,22 +131,23 @@ public class DemoGame extends TEGame {
 	    kernel[7] = 1.0f/9.0f;
 	    kernel[8] = 1.0f/9.0f;
 	    rtt.setKernel(kernel);
-
+		*/
+	    
 	    go.addComponent(rtt);
 	    engine.addGameObject(go);
 	    
 	    go = new TEGameObject();
-	    color = TEColor4.make(1.0f, 0.0f, 0.0f, 1.0f);
-	    size = TEUtilSize.make(160, 160);
-	    radius = 5.0f;
+	    color = TEColor4.make(0.0f, 0.0f, 0.0f, 1.0f);
+	    size = TEUtilSize.make(164, 164);
+	    radius = 5;
 	    
 	    rp = RenderPolygonFactory.roundedRect(size, color, radius, (int)radius);
 	    rp.setRenderTarget(rtt.getTargetFrameBuffer());
 	    go.addComponent(rp);
 	    
-	    size.width += 4;
-	    size.height += 4;
-	    color.r = 0.0f;
+	    size.width -= 4;
+	    size.height -= 4;
+	    color.r = 1.0f;
 	    color.g = 0.0f;
 	    color.b = 0.0f;
 	    color.a = 1.0f;
@@ -153,10 +155,11 @@ public class DemoGame extends TEGame {
 	    rp.setRenderTarget(rtt.getTargetFrameBuffer());
 	    go.addComponent(rp);
 	    
-	    go.position.x = 0.0f;
+	    go.position.x = 82.0f;
 	    go.position.y = 0.0f;
 	    
 	    engine.addGameObject(go);
+	    /*
 	    
 	    go = new TEGameObject();
 	    go.position.x = 0.0f;
@@ -172,5 +175,6 @@ public class DemoGame extends TEGame {
 	    engine.addGameObject(go);
 
 	    rtt.setRenderTarget(rtt2.getTargetFrameBuffer());
+	   */
 	}
 }
