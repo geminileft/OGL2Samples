@@ -3,6 +3,7 @@ package TEEngine.Core;
 import TEEngine.Render.TERenderTarget;
 import TEEngine.Render.TERenderTarget.TEShaderType;
 import TEEngine.Render.TERenderer;
+import TEEngine.Util.TEColor4;
 
 public abstract class TEComponentRender extends TEComponent {
 	private static TERenderer mSharedRenderer;
@@ -43,6 +44,16 @@ public abstract class TEComponentRender extends TEComponent {
 
 	public TEShaderType getExtraType() {
 	    return mExtraType;
+	}
+
+	public void setKernel(float[] kernel) {
+	    mExtra = (Object)kernel;
+	    mExtraType = TEShaderType.ShaderKernel;
+	}
+
+	public void setTransparentColor(TEColor4 color) {
+	    mExtra = (Object)color;
+	    mExtraType = TEShaderType.ShaderTransparentColor;
 	}
 
 }

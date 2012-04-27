@@ -23,7 +23,7 @@ public class TERenderer implements GLSurfaceView.Renderer {
 	
 	private TERenderTarget mScreenTarget;
     private HashMap<TEShaderType, TEShaderProgram> mShaderPrograms = new HashMap<TEShaderType, TEShaderProgram>();
-    private HashMap<Integer, TERenderTarget> mTargets;
+    private HashMap<Integer, TERenderTarget> mTargets = new HashMap<Integer, TERenderTarget>();
     private int mScreenFrameBuffer;
 
     public void onSurfaceCreated(GL10 glUnused, EGLConfig config) {
@@ -56,6 +56,7 @@ public class TERenderer implements GLSurfaceView.Renderer {
 		
 		TEEngine engine = TEEngine.sharedEngine();
 		TEComponentRender.setSharedRenderer(this);
+		engine.setRenderer(this);
 		engine.start();
     }
 
@@ -64,10 +65,16 @@ public class TERenderer implements GLSurfaceView.Renderer {
     }
 
     public void onDrawFrame(GL10 glUnused) {
-    	mScreenTarget.resetPrimatives();
-    	TEEngine engine = TEEngine.sharedEngine();
-    	engine.run();
-        GLES20.glClear( GLES20.GL_COLOR_BUFFER_BIT);
+        TERenderTarget rt;
+        TEEngine engine = TEEngine.sharedEngine();
+
+        engine.run();
+        
+        for (Integer key : mTargets.keySet()) {
+        	rt = mTargets.get(key);
+            runTargetShaders(rt);
+        }
+                
         runTargetShaders(mScreenTarget);
     }
     
@@ -126,6 +133,13 @@ public class TERenderer implements GLSurfaceView.Renderer {
 	
 	public int getScreenFrameBuffer() {
 	    return mScreenFrameBuffer;
+	}
+
+	public void reset() {
+	    for (Integer i : mTargets.keySet()) {
+	    	mTargets.get(i).resetPrimatives();
+	    }
+	    mScreenTarget.resetPrimatives();
 	}
 
 }

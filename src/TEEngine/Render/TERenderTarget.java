@@ -18,6 +18,8 @@ public class TERenderTarget {
     public enum TEShaderType {
     	ShaderTexture
     	, ShaderPolygon
+    	, ShaderKernel
+    	, ShaderTransparentColor
     };
     
 	HashMap<TEShaderType, LinkedList<TERenderPrimative>> mShaders = new HashMap<TEShaderType, LinkedList<TERenderPrimative>>();

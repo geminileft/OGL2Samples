@@ -11,8 +11,9 @@ import android.util.Log;
 public class DemoGame extends TEGame {
 
 	public void start() {
-		imageDemo();
-		polyDemo();
+		//imageDemo();
+		//polyDemo();
+		renderToTextureDemo();
 		Log.v("DemoGame", "start");
 	}
 	
@@ -61,5 +62,75 @@ public class DemoGame extends TEGame {
 	    go.position.y = 0.0f;
 	    
 	    engine.addGameObject(go);
+	}
+	
+	public void renderToTextureDemo() {
+		TEEngine engine = TEEngine.sharedEngine();
+	    TEGameObject go;
+	    TEColor4 color;
+	    RenderPolygon rp;
+	    TEUtilSize size;
+	    float radius;
+	    RenderToTexture rtt;
+	    RenderToTexture rtt2;
+
+	    go = new TEGameObject();
+	    go.position.x = 0.0f;
+	    go.position.y = 0.0f;
+	    
+	    rtt  = new RenderToTexture(256);
+	    float kernel[] = new float[9];
+	    kernel[0] = 1.0f/9.0f;
+	    kernel[1] = 1.0f/9.0f;
+	    kernel[2] = 1.0f/9.0f;
+	    kernel[3] = 1.0f/9.0f;
+	    kernel[4] = 1.0f/9.0f;
+	    kernel[5] = 1.0f/9.0f;
+	    kernel[6] = 1.0f/9.0f;
+	    kernel[7] = 1.0f/9.0f;
+	    kernel[8] = 1.0f/9.0f;
+	    rtt.setKernel(kernel);
+
+	    go.addComponent(rtt);
+	    engine.addGameObject(go);
+	    
+	    go = new TEGameObject();
+	    color = TEColor4.make(1.0f, 0.0f, 0.0f, 1.0f);
+	    size = TEUtilSize.make(160, 160);
+	    radius = 5.0f;
+	    
+	    rp = RenderPolygonFactory.roundedRect(size, color, radius, (int)radius);
+	    rp.setRenderTarget(rtt.getTargetFrameBuffer());
+	    go.addComponent(rp);
+	    
+	    size.width += 4;
+	    size.height += 4;
+	    color.r = 0.0f;
+	    color.g = 0.0f;
+	    color.b = 0.0f;
+	    color.a = 1.0f;
+	    rp = RenderPolygonFactory.roundedRect(size, color, radius, (int)radius);
+	    rp.setRenderTarget(rtt.getTargetFrameBuffer());
+	    go.addComponent(rp);
+	    
+	    go.position.x = 0.0f;
+	    go.position.y = 0.0f;
+	    
+	    engine.addGameObject(go);
+	    
+	    go = new TEGameObject();
+	    go.position.x = 0.0f;
+	    go.position.y = 0.0f;
+
+	    rtt2  = new RenderToTexture(256);
+	    color.r = 0;
+	    color.g = 0;
+	    color.b = 0;
+	    rtt2.setTransparentColor(color);
+
+	    go.addComponent(rtt2);
+	    engine.addGameObject(go);
+
+	    rtt.setRenderTarget(rtt2.getTargetFrameBuffer());
 	}
 }

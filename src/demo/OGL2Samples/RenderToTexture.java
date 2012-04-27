@@ -16,7 +16,7 @@ class RenderToTexture extends TEComponentRender {
 	int mSize;
 	FloatBuffer mVertexBuffer;
 	FloatBuffer mTextureBuffer;
-	TERenderPrimative mRenderPrimative;
+	TERenderPrimative mRenderPrimative = new TERenderPrimative();
 
 	public RenderToTexture(int size)  {
 		super();
