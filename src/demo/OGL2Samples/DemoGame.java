@@ -11,13 +11,50 @@ import android.util.Log;
 public class DemoGame extends TEGame {
 
 	public void start() {
-		//imageDemo();
+		imageDemo();
 		//polyDemo();
-		renderToTextureDemo();
+		//renderToTextureDemo();
 		Log.v("DemoGame", "start");
 	}
 	
 	public void imageDemo() {
+		TEEngine engine = TEEngine.sharedEngine();
+		TEGameObject go;
+		TEUtilSize size;
+		RenderImage ri;
+	    go = new TEGameObject();
+	    size = TEUtilSize.make(160, 160);
+	    ri = new RenderImage(R.raw.club_ace, TEUtilPoint.make(0, 0), size);
+	    float kernel[] = new float[9];
+	    kernel[0] = 1.0f/9.0f;
+	    kernel[1] = 1.0f/9.0f;
+	    kernel[2] = 1.0f/9.0f;
+	    kernel[3] = 1.0f/9.0f;
+	    kernel[4] = 1.0f/9.0f;
+	    kernel[5] = 1.0f/9.0f;
+	    kernel[6] = 1.0f/9.0f;
+	    kernel[7] = 1.0f/9.0f;
+	    kernel[8] = 1.0f/9.0f;
+	    ri.setKernel(kernel);
+
+	    go.position.x = -80.0f;
+	    go.position.y = 0.0f;
+
+	    go.addComponent(ri);
+	    engine.addGameObject(go);		
+
+	    go = new TEGameObject();
+	    size = TEUtilSize.make(160, 160);
+	    ri = new RenderImage(R.raw.club_ace, TEUtilPoint.make(0, 0), size);
+
+	    go.position.x = 80.0f;
+	    go.position.y = 0.0f;
+
+	    go.addComponent(ri);
+	    engine.addGameObject(go);		
+	}
+	
+	public void kernelDemo() {
 		TEEngine engine = TEEngine.sharedEngine();
 		TEGameObject go;
 		TEUtilSize size;

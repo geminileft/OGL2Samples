@@ -43,6 +43,8 @@ public class RenderImage extends TEComponentRender {
 	    mRenderPrimative.position.x = parent.position.x;
 	    mRenderPrimative.position.y = parent.position.y;
 	    mRenderPrimative.position.z = 0;
+	    mRenderPrimative.extraData = getExtraData();
+	    mRenderPrimative.extraType = getExtraType();
 	    mRenderTarget.addPrimative(mRenderPrimative);		
 	}
 	

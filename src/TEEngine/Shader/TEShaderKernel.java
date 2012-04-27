@@ -50,7 +50,7 @@ public class TEShaderKernel extends TEShaderProgram {
 	        GLES20.glVertexAttribPointer(positionHandle, 2, GLES20.GL_FLOAT, false, 0, primative.vertexBuffer);
 	        GLES20.glUniform2fv(offsetHandle, OFFSET_COUNT, offsets, 0);
 	        GLES20.glUniform1fv(kernelHandle, OFFSET_COUNT, (float[])primative.extraData, 0);
-	        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, 4);
+	        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);
 	    }
 	    deactivate();
 	}
