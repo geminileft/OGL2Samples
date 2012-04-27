@@ -45,7 +45,7 @@ public class DemoGame extends TEGame {
 
 	    go = new TEGameObject();
 	    size = TEUtilSize.make(160, 160);
-	    ri = new RenderImage(R.raw.club_ace, TEUtilPoint.make(0, 0), size);
+	    ri = new RenderImage(R.raw.diamond_ace, TEUtilPoint.make(0, 0), size);
 
 	    go.position.x = 80.0f;
 	    go.position.y = 0.0f;
