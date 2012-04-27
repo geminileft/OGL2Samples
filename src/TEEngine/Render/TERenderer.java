@@ -91,12 +91,12 @@ public class TERenderer implements GLSurfaceView.Renderer {
         TEEngine engine = TEEngine.sharedEngine();
 
         engine.run();
-        
+
         for (Integer key : mTargets.keySet()) {
         	rt = mTargets.get(key);
             runTargetShaders(rt);
         }
-                
+
         runTargetShaders(mScreenTarget);
     }
     

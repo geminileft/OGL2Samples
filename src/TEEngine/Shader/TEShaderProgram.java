@@ -62,7 +62,7 @@ public abstract class TEShaderProgram {
         	}
         }
         
-        target.activate();
+        //target.activate();
         int mProjHandle  = GLES20.glGetUniformLocation(mProgramId, "uProjectionMatrix");
         int mViewHandle = GLES20.glGetUniformLocation(mProgramId, "uViewMatrix");
         GLES20.glUniformMatrix4fv(mProjHandle, 1, false, target.getProjMatrix(), 0);

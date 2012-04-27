@@ -119,7 +119,7 @@ public class DemoGame extends TEGame {
 	    go.position.y = 0.0f;
 	    
 	    rtt  = new RenderToTexture(256);
-	    /*
+
 	    float kernel[] = new float[9];
 	    kernel[0] = 1.0f/9.0f;
 	    kernel[1] = 1.0f/9.0f;
@@ -131,7 +131,6 @@ public class DemoGame extends TEGame {
 	    kernel[7] = 1.0f/9.0f;
 	    kernel[8] = 1.0f/9.0f;
 	    rtt.setKernel(kernel);
-		*/
 	    
 	    go.addComponent(rtt);
 	    engine.addGameObject(go);
@@ -155,11 +154,10 @@ public class DemoGame extends TEGame {
 	    rp.setRenderTarget(rtt.getTargetFrameBuffer());
 	    go.addComponent(rp);
 	    
-	    go.position.x = 82.0f;
+	    go.position.x = 0.0f;
 	    go.position.y = 0.0f;
 	    
 	    engine.addGameObject(go);
-	    /*
 	    
 	    go = new TEGameObject();
 	    go.position.x = 0.0f;
@@ -175,6 +173,5 @@ public class DemoGame extends TEGame {
 	    engine.addGameObject(go);
 
 	    rtt.setRenderTarget(rtt2.getTargetFrameBuffer());
-	   */
 	}
 }
