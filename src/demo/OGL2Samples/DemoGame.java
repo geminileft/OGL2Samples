@@ -12,7 +12,7 @@ public class DemoGame extends TEGame {
 
 	public void start() {
 		//imageDemo();
-		//polyDemo();
+		polyDemo();
 		renderToTextureDemo();
 		Log.v("DemoGame", "start");
 	}
@@ -160,7 +160,7 @@ public class DemoGame extends TEGame {
 	    engine.addGameObject(go);
 	    
 	    go = new TEGameObject();
-	    go.position.x = 0.0f;
+	    go.position.x = -82.0f;
 	    go.position.y = 0.0f;
 
 	    rtt2  = new RenderToTexture(256);
