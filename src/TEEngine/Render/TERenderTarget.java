@@ -103,6 +103,7 @@ public class TERenderTarget {
 	}
 
 	public HashMap<TEShaderType, LinkedList<TERenderPrimative>> getShaderData() {
+		/*
 		Log.v("getShaderData", "trying to locate error");
 		synchronized(mShaderBuffer) {
 			mShaderBuffer.clear();
@@ -115,6 +116,7 @@ public class TERenderTarget {
 			}
 		}
 		mShaders.clear();
-	    return mShaderBuffer;
+		*/
+	    return mShaders;
 	}
 }
