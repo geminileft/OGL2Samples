@@ -15,7 +15,7 @@ import TEEngine.Shader.TEShaderKernel;
 import TEEngine.Shader.TEShaderPolygon;
 import TEEngine.Shader.TEShaderProgram;
 import TEEngine.Shader.TEShaderTexture;
-import TEEngine.Util.TEColor4;
+import TEEngine.Util.TEUtilColor4;
 import TEEngine.Util.TEUtilSize;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -75,7 +75,7 @@ public class TERenderer implements GLSurfaceView.Renderer {
 		int[] params = new int[1];
 		GLES20.glGetIntegerv(GLES20.GL_FRAMEBUFFER_BINDING, params, 0);
 		mScreenFrameBuffer = params[0];
-		mScreenTarget = new TERenderTarget(mScreenFrameBuffer, TEColor4.make(0.0f, 0.0f, 1.0f, 1.0f));
+		mScreenTarget = new TERenderTarget(mScreenFrameBuffer, TEUtilColor4.make(0.0f, 0.0f, 1.0f, 1.0f));
 		
 		TEEngine engine = TEEngine.sharedEngine();
 		TEComponentRender.setSharedRenderer(this);
@@ -142,7 +142,7 @@ public class TERenderer implements GLSurfaceView.Renderer {
         	Log.v("Failed", "Frame buffer creation");
         }
 
-        TERenderTarget target = new TERenderTarget(frameBuffer[0], TEColor4.make(0.0f, 0.0f, 0.0f, 0.0f));
+        TERenderTarget target = new TERenderTarget(frameBuffer[0], TEUtilColor4.make(0.0f, 0.0f, 0.0f, 0.0f));
         target.setSize(TEUtilSize.make(size, size));
         return target;
     }

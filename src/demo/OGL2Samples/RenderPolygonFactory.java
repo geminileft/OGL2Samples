@@ -4,11 +4,11 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import TEEngine.Util.TEColor4;
+import TEEngine.Util.TEUtilColor4;
 import TEEngine.Util.TEUtilSize;
 
 public class RenderPolygonFactory {
-	public static RenderPolygon roundedRectCorner(TEColor4 color, float radius, int density) {
+	public static RenderPolygon roundedRectCorner(TEUtilColor4 color, float radius, int density) {
     final float halfHeight = radius;
     final float halfWidth = radius;
     final int offset = 4;
@@ -50,7 +50,7 @@ public class RenderPolygonFactory {
     return rf;
 }
 
-	public static RenderPolygon roundedRectPolygon(TEUtilSize size, TEColor4 color, float radius) {    
+	public static RenderPolygon roundedRectPolygon(TEUtilSize size, TEUtilColor4 color, float radius) {    
 	    final float halfHeight = (float)size.height / 2;
 	    final float halfWidth = (float)size.width / 2;
 	    final int vertexCount = 9;
@@ -92,7 +92,7 @@ public class RenderPolygonFactory {
 	    return rf;
 	}
 
-	public static RenderPolygon roundedRect(TEUtilSize size, TEColor4 color, float radius, int density) {    
+	public static RenderPolygon roundedRect(TEUtilSize size, TEUtilColor4 color, float radius, int density) {    
     final float halfHeight = (float)size.height / 2;
     final float halfWidth = (float)size.width / 2;
     final int vertexCount = 9 + (4 * density);

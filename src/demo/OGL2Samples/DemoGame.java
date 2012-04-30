@@ -3,7 +3,7 @@ package demo.OGL2Samples;
 import TEEngine.Core.TEEngine;
 import TEEngine.Core.TEGame;
 import TEEngine.Core.TEGameObject;
-import TEEngine.Util.TEColor4;
+import TEEngine.Util.TEUtilColor4;
 import TEEngine.Util.TEUtilPoint;
 import TEEngine.Util.TEUtilSize;
 import android.util.Log;
@@ -75,12 +75,12 @@ public class DemoGame extends TEGame {
 	public void polyDemo() {
 		TEEngine engine = TEEngine.sharedEngine();
 		TEGameObject go;
-		TEColor4 color;
+		TEUtilColor4 color;
 		TEUtilSize size;
 		RenderPolygon rp;
 		int radius;
 	    go = new TEGameObject();
-	    color = TEColor4.make(0.0f, 0.0f, 0.0f, 1.0f);
+	    color = TEUtilColor4.make(0.0f, 0.0f, 0.0f, 1.0f);
 	    size = TEUtilSize.make(164, 164);
 	    radius = 5;
 	    
@@ -107,7 +107,7 @@ public class DemoGame extends TEGame {
 	public void renderToTextureDemo() {
 		TEEngine engine = TEEngine.sharedEngine();
 	    TEGameObject go;
-	    TEColor4 color;
+	    TEUtilColor4 color;
 	    RenderPolygon rp;
 	    TEUtilSize size;
 	    float radius;
@@ -136,7 +136,7 @@ public class DemoGame extends TEGame {
 	    engine.addGameObject(go);
 	    
 	    go = new TEGameObject();
-	    color = TEColor4.make(0.0f, 0.0f, 0.0f, 1.0f);
+	    color = TEUtilColor4.make(0.0f, 0.0f, 0.0f, 1.0f);
 	    size = TEUtilSize.make(164, 164);
 	    radius = 5;
 	    

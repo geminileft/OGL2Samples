@@ -4,7 +4,7 @@ import java.nio.FloatBuffer;
 
 import TEEngine.Core.TEComponentRender;
 import TEEngine.Render.TERenderPrimative;
-import TEEngine.Util.TEColor4;
+import TEEngine.Util.TEUtilColor4;
 
 class RenderPolygon extends TEComponentRender {
 	private float mR;
@@ -43,7 +43,7 @@ class RenderPolygon extends TEComponentRender {
 		//getManager()->moveComponentToTop(this);
 	};
 
-	public void setColor(TEColor4 color) {
+	public void setColor(TEUtilColor4 color) {
 	    mRenderPrimative.color.r = color.r;
 	    mRenderPrimative.color.g = color.g;
 	    mRenderPrimative.color.b = color.b;

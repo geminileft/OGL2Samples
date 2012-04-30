@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import TEEngine.Shader.TEShaderData;
-import TEEngine.Util.TEColor4;
+import TEEngine.Util.TEUtilColor4;
 import TEEngine.Util.TEUtilSize;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
@@ -14,7 +14,7 @@ public class TERenderTarget {
 	private int mFrameBuffer;
 	private int mFrameWidth;
     private int mFrameHeight;
-    private TEColor4 mBackgroundColor;
+    private TEUtilColor4 mBackgroundColor;
     float mProjMatrix[] = new float[16];
     float mViewMatrix[] = new float[16];
     public enum TEShaderType {
@@ -29,7 +29,7 @@ public class TERenderTarget {
 	HashMap<TEShaderType, LinkedList<TERenderPrimative>> mShaderBuffer = new HashMap<TEShaderType, LinkedList<TERenderPrimative>>();
 	TEShaderData mShaderData;
 
-	public TERenderTarget(int frameBuffer, TEColor4 backgroundColor) {
+	public TERenderTarget(int frameBuffer, TEUtilColor4 backgroundColor) {
 		mBackgroundColor = backgroundColor;
 		mFrameBuffer = frameBuffer;
 	}
